@@ -1,0 +1,12 @@
+{
+  "header": {
+    "languageLabel": "Language",
+    "english": "English",
+    "spanish": "Español (México)"
+  },
+  "home": {
+    "headline": "Tournament registration",
+    "subtitle": "Pick your partner and category: Men's Doubles, Women's Doubles, Mixed Doubles.",
+    "cta": "Start registration"
+  }
+}
