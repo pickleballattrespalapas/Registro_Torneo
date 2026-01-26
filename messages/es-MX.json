@@ -1,0 +1,12 @@
+{
+  "header": {
+    "languageLabel": "Idioma",
+    "english": "English",
+    "spanish": "Español (México)"
+  },
+  "home": {
+    "headline": "Inscripción al Evento",
+    "subtitle": "Elige a tu compañero(a) y categoría: Dobles Varonil, Dobles Feminil, Dobles Mixtos.",
+    "cta": "Comienza tu inscripción"
+  }
+}
