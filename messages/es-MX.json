@@ -7,6 +7,27 @@
   "home": {
     "headline": "Inscripción al Evento",
     "subtitle": "Elige a tu compañero(a) y categoría: Dobles Varonil, Dobles Feminil, Dobles Mixtos.",
-    "cta": "Comienza tu inscripción"
+    "cta": "Comienza tu inscripción",
+    "tournamentTitle": "Información del torneo",
+    "tournamentNamePlaceholder": "Nombre del torneo próximamente",
+    "tournamentDatesPlaceholder": "Fechas próximamente",
+    "sponsorsTitle": "Patrocinadores",
+    "sponsorsPlaceholder": "Pronto compartiremos los patrocinadores."
+  },
+  "events": {
+    "title": "Eventos",
+    "empty": "Aún no hay eventos disponibles."
+  },
+  "lists": {
+    "title": "Listas públicas",
+    "empty": "Aún no hay eventos disponibles."
+  },
+  "roster": {
+    "title": "Lista del evento",
+    "empty": "Aún no hay inscripciones.",
+    "statusLabel": "Estado",
+    "inviterLabel": "Jugador(a)",
+    "partnerLabel": "Compañero(a)",
+    "partnerPlaceholder": "—"
   }
 }

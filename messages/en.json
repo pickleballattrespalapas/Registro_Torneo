@@ -7,6 +7,27 @@
   "home": {
     "headline": "Tournament registration",
     "subtitle": "Pick your partner and category: Men's Doubles, Women's Doubles, Mixed Doubles.",
-    "cta": "Start registration"
+    "cta": "Start registration",
+    "tournamentTitle": "Tournament information",
+    "tournamentNamePlaceholder": "Tournament name coming soon",
+    "tournamentDatesPlaceholder": "Dates coming soon",
+    "sponsorsTitle": "Sponsors",
+    "sponsorsPlaceholder": "Sponsor lineup coming soon."
+  },
+  "events": {
+    "title": "Events",
+    "empty": "No events are available yet."
+  },
+  "lists": {
+    "title": "Rosters",
+    "empty": "No events are available yet."
+  },
+  "roster": {
+    "title": "Event roster",
+    "empty": "No entries yet.",
+    "statusLabel": "Status",
+    "inviterLabel": "Player",
+    "partnerLabel": "Partner",
+    "partnerPlaceholder": "—"
   }
 }
