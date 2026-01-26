@@ -12,7 +12,9 @@ export default async function HomePage({
     <main>
       <h1>{t("headline")}</h1>
       <p>{t("subtitle")}</p>
-      <Link href={`/${params.locale}/inscripcion/iniciar`}>{t("cta")}</Link>
+      <Link href={`/${params.locale}/inscripcion/iniciar`}>
+        <button type="button">{t("cta")}</button>
+      </Link>
     </main>
   );
 }
