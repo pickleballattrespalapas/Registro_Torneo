@@ -6,7 +6,96 @@
   },
   "home": {
     "headline": "Inscripción al Evento",
-    "subtitle": "Elige a tu compañero(a) y categoría: Dobles Varonil, Dobles Feminil, Dobles Mixtos.",
+    "subtitle": "Elige a tu compañero(a) y categoría: Dobles Varonil, Dobles Femenil, Dobles Mixto.",
     "cta": "Comienza tu inscripción"
+  },
+  "registrationStart": {
+    "title": "Inicia tu inscripción",
+    "description": "Reuniremos tus datos de jugador, nivel y selección de eventos antes de la exención.",
+    "cta": "Comenzar"
+  },
+  "registrationPlayer": {
+    "title": "Datos del jugador",
+    "subtitle": "Inscripción para {tournament}",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "continue": "Continuar"
+  },
+  "registrationLevel": {
+    "title": "Selecciona tu nivel",
+    "subtitle": "Elige el nivel en el que jugarás.",
+    "level30": "Nivel 3.0",
+    "level35": "Nivel 3.5",
+    "level40": "Nivel 4.0",
+    "continue": "Continuar",
+    "missingTitle": "Inscripción no encontrada",
+    "missingCopy": "No encontramos tu token de inscripción. Inicia de nuevo."
+  },
+  "registrationEvents": {
+    "title": "Selecciona eventos",
+    "subtitle": "{name}, elige los eventos que deseas jugar.",
+    "continue": "Continuar",
+    "missingTitle": "Inscripción no encontrada",
+    "missingCopy": "No encontramos tu token de inscripción. Inicia de nuevo."
+  },
+  "registrationSummary": {
+    "title": "Resumen",
+    "playerTitle": "Jugador",
+    "eventsTitle": "Eventos",
+    "levelLabel": "Nivel",
+    "statusComplete": "Completo",
+    "statusPending": "Pendiente",
+    "statusNeedsPartner": "Falta compañero(a)",
+    "continue": "Continuar a la exención",
+    "missingTitle": "Inscripción no encontrada",
+    "missingCopy": "No encontramos tu token de inscripción. Inicia de nuevo."
+  },
+  "registrationWaiver": {
+    "title": "Exención",
+    "accept": "Acepto los términos de la exención.",
+    "continue": "Finalizar inscripción",
+    "missingTitle": "Exención no disponible",
+    "missingCopy": "No pudimos cargar la exención. Intenta más tarde."
+  },
+  "registrationConfirmation": {
+    "title": "Inscripción completada",
+    "success": "Tu inscripción se guardó correctamente.",
+    "inviteSuccess": "Ahora estás registrado como compañero(a) en el evento.",
+    "manageLink": "Administrar mi inscripción",
+    "missingTitle": "Inscripción no encontrada",
+    "missingCopy": "No encontramos tu token de inscripción. Inicia de nuevo."
+  },
+  "manageRegistration": {
+    "title": "Administra tu inscripción",
+    "entriesTitle": "Eventos",
+    "empty": "Aún no tienes eventos inscritos.",
+    "roleOwner": "Titular",
+    "rolePartner": "Compañero(a)",
+    "statusComplete": "Completo",
+    "statusPending": "Pendiente",
+    "statusNeedsPartner": "Falta compañero(a)",
+    "generateLink": "Generar enlace de invitación",
+    "copyLink": "Copiar enlace",
+    "copied": "Copiado",
+    "invitePending": "Tu inscripción no está completa hasta que tu compañero(a) acepte.",
+    "missingTitle": "Inscripción no encontrada",
+    "missingCopy": "No encontramos tu token de inscripción. Inicia de nuevo."
+  },
+  "invitePartner": {
+    "title": "Invitación de compañero(a)",
+    "tournamentLabel": "Torneo: {tournament}",
+    "eventLabel": "Evento: {event}",
+    "inviterLabel": "Invitación enviada por {name}",
+    "acceptTitle": "Aceptar invitación",
+    "declineTitle": "Rechazar invitación",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "acceptWaiver": "Acepto los términos de la exención.",
+    "acceptButton": "Aceptar e inscribirme",
+    "declineButton": "Rechazar",
+    "invalidTitle": "Invitación no disponible",
+    "invalidCopy": "Esta invitación ya no está disponible."
   }
 }

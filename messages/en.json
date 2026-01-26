@@ -2,11 +2,100 @@
   "header": {
     "languageLabel": "Language",
     "english": "English",
-    "spanish": "Español (México)"
+    "spanish": "Spanish (Mexico)"
   },
   "home": {
-    "headline": "Tournament registration",
-    "subtitle": "Pick your partner and category: Men's Doubles, Women's Doubles, Mixed Doubles.",
-    "cta": "Start registration"
+    "headline": "Tournament Registration",
+    "subtitle": "Choose your partner and category: Men's Doubles, Women's Doubles, Mixed Doubles.",
+    "cta": "Start your registration"
+  },
+  "registrationStart": {
+    "title": "Start your registration",
+    "description": "We'll collect your player details, level, and event selection before the waiver.",
+    "cta": "Begin"
+  },
+  "registrationPlayer": {
+    "title": "Player information",
+    "subtitle": "Registering for {tournament}",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "continue": "Continue"
+  },
+  "registrationLevel": {
+    "title": "Choose your level",
+    "subtitle": "Select the level you will play.",
+    "level30": "Level 3.0",
+    "level35": "Level 3.5",
+    "level40": "Level 4.0",
+    "continue": "Continue",
+    "missingTitle": "Registration not found",
+    "missingCopy": "We could not find your registration token. Start again from the beginning."
+  },
+  "registrationEvents": {
+    "title": "Select events",
+    "subtitle": "{name}, choose the events you want to play.",
+    "continue": "Continue",
+    "missingTitle": "Registration not found",
+    "missingCopy": "We could not find your registration token. Start again from the beginning."
+  },
+  "registrationSummary": {
+    "title": "Summary",
+    "playerTitle": "Player",
+    "eventsTitle": "Events",
+    "levelLabel": "Level",
+    "statusComplete": "Complete",
+    "statusPending": "Pending partner",
+    "statusNeedsPartner": "Needs partner",
+    "continue": "Continue to waiver",
+    "missingTitle": "Registration not found",
+    "missingCopy": "We could not find your registration token. Start again from the beginning."
+  },
+  "registrationWaiver": {
+    "title": "Waiver",
+    "accept": "I accept the waiver terms.",
+    "continue": "Finish registration",
+    "missingTitle": "Waiver not available",
+    "missingCopy": "We could not load the waiver. Please try again later."
+  },
+  "registrationConfirmation": {
+    "title": "Registration complete",
+    "success": "Your registration has been saved.",
+    "inviteSuccess": "You're now listed as a partner for this event.",
+    "manageLink": "Manage my registration",
+    "missingTitle": "Registration not found",
+    "missingCopy": "We could not find your registration token. Start again from the beginning."
+  },
+  "manageRegistration": {
+    "title": "Manage registration",
+    "entriesTitle": "Entries",
+    "empty": "No entries yet.",
+    "roleOwner": "Owner",
+    "rolePartner": "Partner",
+    "statusComplete": "Complete",
+    "statusPending": "Pending partner",
+    "statusNeedsPartner": "Needs partner",
+    "generateLink": "Generate invite link",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "invitePending": "Your registration is not complete until your partner accepts.",
+    "missingTitle": "Registration not found",
+    "missingCopy": "We could not find your registration token. Start again from the beginning."
+  },
+  "invitePartner": {
+    "title": "Partner invite",
+    "tournamentLabel": "Tournament: {tournament}",
+    "eventLabel": "Event: {event}",
+    "inviterLabel": "Invited by {name}",
+    "acceptTitle": "Accept invite",
+    "declineTitle": "Decline invite",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "acceptWaiver": "I accept the waiver terms.",
+    "acceptButton": "Accept and register",
+    "declineButton": "Decline",
+    "invalidTitle": "Invite not available",
+    "invalidCopy": "This invite is no longer available."
   }
 }
