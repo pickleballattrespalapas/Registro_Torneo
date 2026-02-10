@@ -8,171 +8,107 @@ generator client {
 }
 
 enum EventType {
-  INDIVIDUAL
-  DOBLES_VARONIL
-  DOBLES_FEMENIL
-  DOBLES_MIXTO
+  mens
+  womens
+  mixed
 }
 
-enum EntryStatus {
-  NEED_PARTNER
-  PENDING
-  COMPLETE
-  WAITLIST
-  CANCELED
+enum DivisionFormat {
+  singles
+  doubles
 }
 
-enum PricingTier {
-  EARLY
-  REGULAR
-  LATE
+enum RegistrationStatus {
+  confirmed
 }
 
-enum CapacityCountingMode {
-  COUNT_COMPLETE_ONLY
-  COUNT_ALL
-}
-
-enum OnFullAction {
-  ADD_TO_WAITLIST
-  REJECT
-}
-
-enum RosterOrderingMode {
-  STATUS_THEN_NAME
-  NAME_THEN_STATUS
-}
-
-enum AfterPartnerDeadlineAction {
-  MOVE_TO_WAITLIST
-  CANCEL_ENTRY
+enum PaymentStatus {
+  unpaid
 }
 
 model Tournament {
-  id                   String             @id @default(cuid())
+  id                   String         @id @default(cuid())
   name                 String
-  timezone             String
-  usdToMxnRate          Decimal            @db.Decimal(10, 2)
-  mxnRoundingIncrement Int
-  earlyPricingStart    DateTime
-  earlyPricingEnd      DateTime
-  regularPricingStart  DateTime
-  regularPricingEnd    DateTime
-  latePricingStart     DateTime
-  latePricingEnd       DateTime
-  earlyPriceUsd        Decimal            @db.Decimal(10, 2)
-  regularPriceUsd      Decimal            @db.Decimal(10, 2)
-  latePriceUsd         Decimal            @db.Decimal(10, 2)
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime           @updatedAt
-  policy               TournamentPolicy?
-  events               Event[]
+  slug                 String         @unique
+  startDate            DateTime       @map("start_date")
+  endDate              DateTime       @map("end_date")
+  location             String         @default("Tres Palapas Baja Pickleball Resort, Los Barriles, Mexico")
+  descriptionShort     String         @map("description_short")
+  registrationDeadline DateTime       @map("registration_deadline")
+  createdAt            DateTime       @default(now()) @map("created_at")
+  updatedAt            DateTime       @updatedAt @map("updated_at")
+  divisions            Division[]
   registrations        Registration[]
-  waivers              WaiverVersion[]
+
+  @@map("tournaments")
 }
 
-model TournamentPolicy {
-  id                         String                    @id @default(cuid())
-  tournamentId               String                    @unique
-  rosterVisibleStatuses      EntryStatus[]             @default([COMPLETE, PENDING, NEED_PARTNER])
-  rosterOrderingMode         RosterOrderingMode        @default(STATUS_THEN_NAME)
-  capacityCountingMode       CapacityCountingMode      @default(COUNT_COMPLETE_ONLY)
-  onFullAction               OnFullAction              @default(ADD_TO_WAITLIST)
-  afterPartnerDeadlineAction AfterPartnerDeadlineAction @default(MOVE_TO_WAITLIST)
-  partnerDeadline            DateTime?
-  tournament                 Tournament                @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
-}
-
-model Event {
-  id            String              @id @default(cuid())
-  tournamentId  String
-  name          String
-  eventType     EventType
-  capacity      Int?
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
-  tournament    Tournament          @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
-  policyOverride EventPolicyOverride?
-  entries       EventEntry[]
-}
-
-model EventPolicyOverride {
-  id                         String                     @id @default(cuid())
-  eventId                    String                     @unique
-  rosterVisibleStatuses      EntryStatus[]?
-  rosterOrderingMode         RosterOrderingMode?
-  capacityCountingMode       CapacityCountingMode?
-  onFullAction               OnFullAction?
-  afterPartnerDeadlineAction AfterPartnerDeadlineAction?
-  partnerDeadline            DateTime?
-  event                      Event                      @relation(fields: [eventId], references: [id], onDelete: Cascade)
-}
-
-model Player {
-  id          String        @id @default(cuid())
-  firstName   String
-  lastName    String
-  email       String        @unique
-  createdAt   DateTime      @default(now())
+model Division {
+  id           String         @id @default(cuid())
+  tournamentId String         @map("tournament_id")
+  name         String
+  eventType    EventType      @map("event_type")
+  format       DivisionFormat
+  skillLevel   String         @map("skill_level")
+  price        Decimal        @db.Decimal(10, 2)
+  capacity     Int
+  isOpen       Boolean        @default(true) @map("is_open")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+  tournament   Tournament     @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
   registrations Registration[]
-  teamMemberships TeamMember[]
+  teams        Team[]
+
+  @@map("divisions")
 }
 
 model Registration {
-  id           String       @id @default(cuid())
-  tournamentId String
-  playerId     String
-  manageToken  String       @unique
-  createdAt    DateTime     @default(now())
-  tournament   Tournament   @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
-  player       Player       @relation(fields: [playerId], references: [id], onDelete: Cascade)
-  entries      EventEntry[]
+  id            String             @id @default(cuid())
+  tournamentId  String             @map("tournament_id")
+  divisionId    String             @map("division_id")
+  playerId      String?            @unique @map("player_id")
+  teamId        String?            @unique @map("team_id")
+  status        RegistrationStatus @default(confirmed)
+  paymentStatus PaymentStatus      @default(unpaid) @map("payment_status")
+  notes         String?
+  createdAt     DateTime           @default(now()) @map("created_at")
+  tournament    Tournament         @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  division      Division           @relation(fields: [divisionId], references: [id], onDelete: Cascade)
+  player        Player?            @relation("SinglesPlayer", fields: [playerId], references: [id], onDelete: SetNull)
+  team          Team?
+
+  @@index([divisionId])
+  @@index([tournamentId])
+  @@map("registrations")
 }
 
-model EventEntry {
-  id           String        @id @default(cuid())
-  registrationId String
-  eventId      String
-  status       EntryStatus   @default(PENDING)
-  pricingTier  PricingTier
-  amountUsd    Decimal       @db.Decimal(10, 2)
-  amountMxn    Int
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  registration Registration  @relation(fields: [registrationId], references: [id], onDelete: Cascade)
-  event        Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  partnerInvite PartnerInvite?
-  teamMembers  TeamMember[]
+model Team {
+  id             String       @id @default(cuid())
+  divisionId     String       @map("division_id")
+  registrationId String       @unique @map("registration_id")
+  teamName       String?      @map("team_name")
+  player1Id      String       @map("player1_id")
+  player2Id      String       @map("player2_id")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  division       Division     @relation(fields: [divisionId], references: [id], onDelete: Cascade)
+  registration   Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+  player1        Player       @relation("TeamPlayer1", fields: [player1Id], references: [id], onDelete: Cascade)
+  player2        Player       @relation("TeamPlayer2", fields: [player2Id], references: [id], onDelete: Cascade)
+
+  @@map("teams")
 }
 
-model PartnerInvite {
-  id           String     @id @default(cuid())
-  entryId      String     @unique
-  token        String     @unique
-  invitedEmail String?
-  createdAt    DateTime   @default(now())
-  entry        EventEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
-}
+model Player {
+  id              String         @id @default(cuid())
+  name            String
+  email           String
+  phone           String?
+  skillLevel      String         @map("skill_level")
+  createdAt       DateTime       @default(now()) @map("created_at")
+  singleRegistration Registration? @relation("SinglesPlayer")
+  teamsAsPlayer1  Team[]         @relation("TeamPlayer1")
+  teamsAsPlayer2  Team[]         @relation("TeamPlayer2")
 
-model TeamMember {
-  id        String     @id @default(cuid())
-  entryId   String
-  playerId  String
-  createdAt DateTime   @default(now())
-  entry     EventEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
-  player    Player     @relation(fields: [playerId], references: [id], onDelete: Cascade)
-
-  @@unique([entryId, playerId])
-}
-
-model WaiverVersion {
-  id         String     @id @default(cuid())
-  tournamentId String
-  titleEn    String
-  bodyEn     String
-  titleEs    String
-  bodyEsMx   String
-  isActive   Boolean    @default(true)
-  createdAt  DateTime   @default(now())
-  tournament Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  @@index([email])
+  @@map("players")
 }
